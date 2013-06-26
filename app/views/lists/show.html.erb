@@ -19,5 +19,37 @@
               :method => 'delete',
               :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
               :class => 'btn btn-danger' %>
-  <%= link_to 'Add new task', new_task_path, :class => 'btn' %>
 </div>
+<ul>
+<% @list.tasks.each do |t| %>
+  <li>
+    <%= t.title %>
+  </li>
+<% end %>
+</ul>
+
+
+
+
+<%= form_for [@list, @task] do |f| %>
+  <% if @task.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@task.errors.count, "error") %> prohibited this task from being saved:</h2>
+
+      <ul>
+      <% @task.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="field">
+    <%= f.label :title %><br />
+    <%= f.text_field :title %>
+  </div>
+    <%= hidden_field(:list_id, :id) %>
+  
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

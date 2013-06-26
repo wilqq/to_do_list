@@ -14,7 +14,7 @@ class ListsController < ApplicationController
   # GET /lists/1.json
   def show
     @list = List.find(params[:id])
-
+    @task = Task.new
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @list }
@@ -42,7 +42,7 @@ class ListsController < ApplicationController
   def create
     @list = List.new(params[:list])
     @list.user = current_user
-    
+
     respond_to do |format|
       if @list.save
         format.html { redirect_to @list, notice: 'List was successfully created.' }

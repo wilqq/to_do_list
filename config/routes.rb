@@ -1,10 +1,9 @@
 ToDoList::Application.routes.draw do
-  resources :tasks
-
-
   devise_for :users
 
-  resources :lists
+  resources :lists do
+    resources :tasks
+  end
 
   root to: 'lists#index'
   # The priority is based upon order of creation:
