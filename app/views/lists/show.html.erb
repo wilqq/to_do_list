@@ -20,7 +20,7 @@
               :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
               :class => 'btn btn-danger' %>
 </div>
-<ul>
+<ul id="tasks">
 <% @list.tasks.each do |t| %>
   <li>
     <%= t.title %>
@@ -31,7 +31,9 @@
 
 
 
-<%= form_for [@list, @task] do |f| %>
+
+
+<%= form_for [@list, @task], remote: true do |f| %>
   <% if @task.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@task.errors.count, "error") %> prohibited this task from being saved:</h2>
@@ -43,11 +45,10 @@
       </ul>
     </div>
   <% end %>
-  <div class="field">
+  <div class="field title_f">
     <%= f.label :title %><br />
     <%= f.text_field :title %>
   </div>
-    <%= hidden_field(:list_id, :id) %>
   
   <div class="actions">
     <%= f.submit %>

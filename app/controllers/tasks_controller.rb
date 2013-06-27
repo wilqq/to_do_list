@@ -41,17 +41,7 @@ class TasksController < ApplicationController
   # POST /tasks.json
   def create
     @list = List.find params[:list_id]
-    @task = @list.tasks.build params[:task]
-
-    respond_to do |format|
-      if @task.save
-        format.html { redirect_to @list, notice: 'Task was successfully created.' }
-        format.json { render json: @task, status: :created, location: @task }
-      else
-        format.html { render action: "new" }
-        format.json { render json: @task.errors, status: :unprocessable_entity }
-      end
-    end
+    @task = @list.tasks.create params[:task]
   end
 
   # PUT /tasks/1
