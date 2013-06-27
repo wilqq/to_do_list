@@ -1,1 +1,3 @@
-$("#tasks").append('<li>'+ $('input[id=task_title]').val() + '</li>')
+<% publish_to "/tasks/new" do %>
+$("#tasks").append("<%= j render(@task) %>");
+<% end %>

@@ -42,6 +42,7 @@ class TasksController < ApplicationController
   def create
     @list = List.find params[:list_id]
     @task = @list.tasks.create params[:task]
+    PrivatePub.publish_to("/tasks/new", message: @task.title)
   end
 
   # PUT /tasks/1

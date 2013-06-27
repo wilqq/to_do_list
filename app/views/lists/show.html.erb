@@ -21,17 +21,8 @@
               :class => 'btn btn-danger' %>
 </div>
 <ul id="tasks">
-<% @list.tasks.each do |t| %>
-  <li>
-    <%= t.title %>
-  </li>
-<% end %>
+<%= render @list.tasks %>
 </ul>
-
-
-
-
-
 
 <%= form_for [@list, @task], remote: true do |f| %>
   <% if @task.errors.any? %>
@@ -54,3 +45,4 @@
     <%= f.submit %>
   </div>
 <% end %>
+<%= subscribe_to "/tasks/new" %>
