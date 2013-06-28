@@ -1,3 +1,7 @@
 <% publish_to "/tasks/new" do %>
 $("#tasks").append("<%= j render(@task) %>");
 <% end %>
+<% publish_to "/tasks/new/f" do %>
+$("#tasks").append("<tr id=\"<%= @task.id %>\"> <td> <%= @task.title %> </td> </tr>");
+<% end %>
+$("#task_title").val("");

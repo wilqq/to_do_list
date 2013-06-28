@@ -1,5 +1,5 @@
 class ListsController < ApplicationController
-
+skip_before_filter :authenticate_user!, only: :show_f
   def index
     @lists = current_user.lists
 
@@ -79,5 +79,9 @@ class ListsController < ApplicationController
       format.html { redirect_to lists_url }
       format.json { head :no_content }
     end
+  end
+
+  def show_f
+    @list = List.find(params[:id])
   end
 end

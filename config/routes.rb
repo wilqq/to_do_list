@@ -5,6 +5,8 @@ ToDoList::Application.routes.draw do
     resources :tasks
   end
 
+  get '/:id', to: 'lists#show_f'
+
   root to: 'lists#index'
   # The priority is based upon order of creation:
   # first created -> highest priority.
