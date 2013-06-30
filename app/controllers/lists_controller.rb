@@ -1,5 +1,6 @@
 class ListsController < ApplicationController
 skip_before_filter :authenticate_user!, only: :show_f
+before_filter :owner_authorize, :only => [:update, :update, :show, :edit, :destroy]
   def index
     @lists = current_user.lists
 
@@ -83,5 +84,15 @@ skip_before_filter :authenticate_user!, only: :show_f
 
   def show_f
     @list = List.find(params[:id])
+  end
+
+private
+
+  def list_owned?
+    List.find(params[:id]).user == current_user
+  end
+
+  def owner_authorize
+    redirect_to lists_path, alert: "You aren't owner of this list" unless list_owned?
   end
 end
