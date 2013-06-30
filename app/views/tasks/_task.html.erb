@@ -1,4 +1,4 @@
 <tr id="<%= task.id %>">
 	<td> <%= task.title %> </td> 
-	<td><%= link_to 'Destroy', list_task_path(@list.id, task.id), method: :delete, data: { confirm: 'Are you sure?' }, remote: true  if request.fullpath.include? "list" %></td>
+	<td><%= link_to 'Destroy', list_task_path(@list.id, task.id), method: :delete, data: { confirm: 'Are you sure?' }, remote: true, :class => 'btn btn-danger'   if request.fullpath.include? "list" %></td>
 </tr>

@@ -29,8 +29,6 @@
           <div class="container nav-collapse">
             <ul class="nav">
             	<% if user_signed_in? %>
-              	<li><%= link_to "Link1", "/path1"  %></li>
-              	<li><%= link_to "Link2", "/path2"  %></li>
               	<li><%= link_to "Wyloguj", "/users/sign_out", method: :delete  %></li>
               <% else %>
               	<li><%= link_to "Rejestracja", "/users/sign_up"  %></li>
