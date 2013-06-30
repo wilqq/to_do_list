@@ -6,7 +6,8 @@
 <dl class="dl-horizontal">
   <dt><strong><%= model_class.human_attribute_name(:title) %>:</strong></dt>
   <dd><%= @list.title %></dd>
-  <dd><%= @list.user.email %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:link_for_friends) %>:</strong></dt>
+  <dd><%=link_to root_url + @list.id.to_s, controller: :lists, action: :show_f %></dd>
 </dl>
 
 <div class="form-actions">
